@@ -1,0 +1,69 @@
+{% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+   <link rel="stylesheet" href="{% static 'css/project.css' %}">
+    <div class="container">
+        <h1>Customer Churn Prediction</h1>
+
+        <div class="image-gallery">
+            <img src="{% static 'images/customer_churn.jpg' %}" alt="Customer Churn Prediction Illustration">
+        </div>
+
+        <p class="project-overview">
+            Developed a customer churn prediction model to reduce churn rate and improve customer retention by employing survival analysis techniques and integrating an LLM for personalized explanations.
+        </p>
+
+        <section>
+            <h2 class="section-header">Key Responsibilities and Achievements</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    **Churn Reduction:** Developed a customer churn prediction model that reduced churn rate by <span class="percentage-container"><span class="percentage" data-target="15.6">0</span>%</span>, directly contributing to revenue enhancement.
+                </li>
+                <li class="feature-item">
+                    **Survival Analysis:** Employed survival analysis using Cox proportional hazards regression with Box-Cox transformations to model customer lifecycles and identify key predictors of churn.
+                </li>
+                <li class="feature-item">
+                    **LLM for Personalized Explanations:** Integrated an LLM (LangChain) to generate personalized explanations for high-risk customers, enabling targeted interventions and improving retention strategies.
+                </li>
+                <li class="feature-item">
+                    **Deployment:** Deployed the churn prediction model and LLM-driven insights via a Flask web application, enabling proactive customer relationship management.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-header">Technologies Used</h2>
+            <div class="tech-list">
+                <span class="tech-item">Flask</span>
+                <span class="tech-item">LangChain</span>
+                <span class="tech-item">Cox proportional hazards regression</span>
+                <span class="tech-item">Box-Cox transformations</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-header">Project Details</h2>
+            <p>
+                The Customer Churn Prediction project focused on developing a model to predict customer churn and implement strategies to improve customer retention. This involved:
+            </p>
+            <ul>
+                <li>
+                    **Churn Reduction:** The primary goal was to build a model that could accurately predict which customers were at high risk of churning, allowing for proactive interventions to prevent them from leaving. The successful implementation of this model resulted in a 15% reduction in churn rate, directly contributing to increased revenue.
+                </li>
+                <li>
+                    **Survival Analysis:** To effectively model customer lifecycles and understand the factors that influence churn, survival analysis techniques were employed. Specifically, Cox proportional hazards regression was used, along with Box-Cox transformations to ensure the data met the model's assumptions. This approach provided insights into the time-to-churn and the relative importance of different predictors.
+                </li>
+                <li>
+                    **LLM for Personalized Explanations:** To enhance customer relationship management, an LLM (LangChain) was integrated into the system. This allowed for the generation of personalized explanations for high-risk customers. These explanations provided insights into the reasons for their potential churn, enabling targeted communication and interventions to address their specific concerns and improve their likelihood of staying.
+                </li>
+                <li>
+                    **Deployment:** The churn prediction model and the LLM-driven insights were deployed via a Flask web application. This application provided a user-friendly interface for customer relationship managers to access and utilize the predictions and explanations in their daily work, facilitating proactive customer retention efforts.
+                </li>
+            </ul>
+        </section>
+
+        </div>
+
+    <script src="{% static 'js/project.js' %}"></script>
+   {% endblock %}

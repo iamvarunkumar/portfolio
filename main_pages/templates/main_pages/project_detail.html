@@ -1,0 +1,105 @@
+{% comment %} {% extends "main_pages/home.html" %} Remove this line if you are NOT using a base.html template {% endcomment %}
+{% load static %}
+
+{% block title %}{{ project.title }}{% endblock %} {% comment %} Remove this line if not using base.html {% endcomment %}
+
+{% block content %} {% comment %} Remove this line if not using base.html {% endcomment %}
+<div class="project-detail-container page-section">
+    <a href="/#portfolio" class="back-link">&laquo; Back to Portfolio</a>
+    <h1>{{ project.title }}</h1>
+
+    {% comment %} Optional: Add illustration specific to the detail page {% endcomment %}
+    {% if project.slug %}
+    <img src="{% static 'images/'|add:project.slug|add:'_illustration.png' %}" 
+         alt="{{ project.title }} Illustration" 
+         class="project-detail-illustration"
+         onerror="this.style.display='none'; this.alt='Illustration not found.';"> {# Hide if image not found, update alt text #}
+    {% endif %}
+
+    <div class="project-content">
+        {% comment %} 
+        This section should ideally load content based on project.slug.
+        For now, it includes the URS description directly as an example.
+        You should replace this logic later to load the correct description
+        for each project slug passed from the view, perhaps using includes:
+        {% include "main_pages/project_descriptions/"|add:project.slug|add:".html" %}
+        {% endcomment %}
+        
+        {% if project.slug == 'user-risk-scorecard' %}
+            
+            <h2>The Challenge: Identifying Insider Risks Proactively</h2>
+            <p>In today's complex IT security landscape, identifying potential insider threats before they cause damage is paramount. Relying solely on reactive measures often means discovering malicious activity only after sensitive data has been compromised. The goal for this project was to move beyond simple threshold-based alerts and develop a more intelligent, proactive system to flag employees exhibiting risky behaviors across various security platforms.</p>
+
+            <h2>My Approach: Building an Automated Risk Scorecard</h2>
+            <p>I took on the challenge of developing and automating an end-to-end User Risk Scorecard (URS) pipeline. The first step involved integrating data from six disparate security sources into a unified view using Snowflake, leveraging Dataiku for the ETL orchestration. This unified dataset became the foundation for assessing risk.</p>
+            <p>Initial scoring involved techniques like Exponential Moving Averages (EMA) and Z-scores to establish baseline risk levels and capture deviations from normal activity. This initial phase alone significantly improved baseline risk detection by 40% compared to previous methods. However, I knew we could push further for proactivity.</p>
+
+            <h2>Leveraging Machine Learning and LLMs</h2>
+            <p>To enhance the system's predictive power, I implemented machine learning models, specifically LightGBM, training them on historical data to identify patterns indicative of high-risk users before they escalated. This predictive component, deployed using Azure ML Services and containerized with Docker for scalability, boosted proactive identification by an additional 25%.</p>
+            <p>Furthermore, I incorporated unsupervised anomaly detection using Isolation Forest algorithms. This was crucial for uncovering novel or emerging threats that didn't fit predefined patterns, successfully identifying 15% more previously unseen risky behaviors. To address the challenge of ambiguous alerts, I integrated Large Language Models (LLMs) via Azure OpenAI. By performing context-aware analysis on alert descriptions and related user activity logs, the LLM helped reduce false positives by a significant 20%, allowing security teams to focus on genuine threats.</p>
+
+            <h2>Automation and Impact</h2>
+            <p>A key success factor was the full automation of the pipeline, including data ingestion, model retraining, scoring, and monitoring. This automation saved approximately 80% of the manual analysis time previously required. The entire solution, including containerized ML components deployed via Azure Functions and ML Endpoints, fed actionable insights into Sigma dashboards, providing clear visibility into user risk levels and trends. This project demonstrated the power of combining data integration, diverse ML techniques, and LLM context awareness to create a robust, automated, and significantly more effective insider risk detection system.</p>
+
+        {% else %}
+            <p>Detailed description for {{ project.title }} coming soon...</p>
+            <p>(Content loading based on slug '{{ project.slug }}' needs to be implemented)</p>
+        {% endif %}
+    </div>
+</div>
+
+{% comment %} 
+Add specific CSS below if not using base.html, 
+otherwise ensure these styles (or similar) are in your main style.css 
+OR included via the base template.
+{% endcomment %}
+<style>
+    .project-detail-container {
+        max-width: 900px;
+        margin: 20px auto; /* Center content */
+        padding: 40px;
+        background-color: #333; /* Match card background */
+        border-radius: 8px;
+        color: #e0e0e0; /* Ensure text is light */
+    }
+    .project-detail-container h1 {
+        margin-top: 0;
+        border-bottom: 2px solid dodgerblue;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        color: #ffffff; /* Ensure heading is light */
+    }
+     .project-detail-container h2 { /* Styling for subheadings within description */
+         margin-top: 30px;
+         margin-bottom: 15px;
+         color: dodgerblue;
+     }
+    .project-content {
+        line-height: 1.7;
+        text-align: justify; /* Justify text for longer content */
+    }
+    .project-content p {
+         margin-bottom: 15px;
+         color: #cccccc; /* Lighter grey text */
+     }
+    .back-link {
+        display: inline-block;
+        margin-bottom: 25px;
+        color: dodgerblue;
+        text-decoration: none;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+    .project-detail-illustration {
+        width: 100%;
+        max-height: 300px; /* Adjust height as needed */
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: block;
+        border: 1px solid #444;
+    }
+</style>
+
+{% endblock %} 

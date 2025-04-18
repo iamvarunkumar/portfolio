@@ -1,0 +1,91 @@
+# Byte-code files
+*.pyc
+__pycache__/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+.egg-info/
+parts/
+sdist/
+var/
+*.mo
+*.pot
+*.log
+*.sag
+*.webloc
+*.lck
+
+# Editors
+*.swp
+.DS_Store
+.vscode/
+.idea/
+
+# Python virtual environment
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Development artifacts
+.coverage
+.mypy_cache/
+.pytest_cache/
+instance/
+.webassets-cache
+
+# Django specific
+# Database files:
+# SQLite database file. Adjust if you use a different name.
+db.sqlite3
+
+# Media and static files:
+# These directories are often generated during development or deployment
+# and can contain user-uploaded content or collected static assets.
+# Uncomment if you don't want to track them in Git.
+# media/
+# static/
+
+# Environment variables file
+# Contains sensitive information like secret keys and database credentials.
+.env
+.flaskenv
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Thumbs.db files (Windows)
+Thumbs.db
+
+# Specific to testing frameworks
+.tox/
+
+# Python installer extras
+pip-wheel-metadata/
+wheelhouse/
+
+# User-specific files that may be created by some tools
+*.pydevproject
+.project
+.settings
+.buildpath
+
+# Crash files
+*.stackdump
+
+# If you are using Celery
+celerybeat-schedule.*
+
+# Node.js (if you are using frontend tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Add any other files or directories you want to ignore below this line

@@ -1,0 +1,100 @@
+ {% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/project.css' %}">
+   </head>
+   <body>
+
+    <div class="container">
+        <h1>User Risk Scorecard (URS)</h1>
+        <section>
+            
+            <div class="image-gallery">
+                <img src="{% static 'images/urs.jpg' %}" alt="URS Architecture">
+                
+                </div>
+        </section>
+        <p class="project-overview">
+            Developed and automated an end-to-end user risk scorecard pipeline to enhance security measures by integrating various security sources, implementing scoring mechanisms, and leveraging machine learning and anomaly detection techniques.
+        </p>
+
+        <section>
+            <h2 class="section-header">Key Achievements</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <p>Improved baseline risk detection by <span class="percentage-container"><span class="percentage" data-target="40">0</span>%</span></p>
+                    <p class="percentage-label">Using EMA and Z-scores</p>
+                </div>
+                <div class="feature-item">
+                    <p>Enhanced proactive high-risk user identification by <span class="percentage-container"><span class="percentage" data-target="25">0</span>%</span></p>
+                    <p class="percentage-label">With predictive ML models</p>
+                </div>
+                <div class="feature-item">
+                    <p>Uncovered <span class="percentage-container"><span class="percentage" data-target="15">0</span>%</span> more emerging threats</p>
+                    <p class="percentage-label">With unsupervised anomaly detection</p>
+                </div>
+                <div class="feature-item">
+                    <p>Reduced false positives by <span class="percentage-container"><span class="percentage" data-target="20">0</span>%</span></p>
+                    <p class="percentage-label">Leveraging LLMs</p>
+                </div>
+                <div class="feature-item">
+                    <p>Saved <span class="percentage-container"><span class="percentage" data-target="80">0</span>%</span> of manual analysis time</p>
+                    <p class="percentage-label">Through automation</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-header">Technologies Used</h2>
+            <div class="tech-list">
+                <span class="tech-item">Dataiku</span>
+                <span class="tech-item">Snowflake</span>
+                <span class="tech-item">Azure ML Services</span>
+                <span class="tech-item">Docker</span>
+                <span class="tech-item">Azure OpenAI</span>
+                <span class="tech-item">Azure Functions</span>
+                <span class="tech-item">ML Endpoints</span>
+                <span class="tech-item">LightGBM</span>
+                <span class="tech-item">Isolation Forest</span>
+                <span class="tech-item">Sigma dashboards</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-header">Project Details</h2>
+            <p>
+                The User Risk Scorecard (URS) project focused on developing and automating an end-to-end pipeline to assess user risk within the organization. This involved:
+            </p>
+            <ul>
+                <li>
+                    **End-to-End Pipeline Development:** Developed and automated a complete user risk scorecard pipeline using Dataiku. This involved orchestrating the entire process from data integration to final reporting.
+                </li>
+                <li>
+                    **Data Integration:** Integrated six different security sources into Snowflake, creating a centralized data warehouse for risk analysis.
+                </li>
+                <li>
+                    **Initial Scoring Implementation:** Implemented initial scoring mechanisms using Exponential Moving Average (EMA) and Z-scores. This improved the baseline risk detection by 40%.
+                </li>
+                <li>
+                    **Predictive Modeling:** Enhanced proactive high-risk user identification by 25% by implementing predictive machine learning models, specifically LightGBM, on Azure ML Services and Docker.
+                </li>
+                <li>
+                    **Anomaly Detection:** Integrated unsupervised anomaly detection using Isolation Forest to uncover emerging threats, leading to the identification of 15% more threats.
+                </li>
+                <li>
+                    **LLM for Contextual Analysis:** Leveraged Large Language Models (LLMs) through Azure OpenAI for context-aware analysis of alerts, reducing false positives by 20%.
+                </li>
+                <li>
+                    **Automation and Deployment:** Fully automated the pipeline, including model retraining and monitoring, resulting in an 80% reduction in manual analysis time. Deployed containerized components using Docker and Azure Functions/ML Endpoints.
+                </li>
+                <li>
+                    **Actionable Insights:** Delivered actionable insights through Sigma dashboards, providing clear visualizations of risk data.
+                </li>
+            </ul>
+        </section>
+    </div>
+<script src="{% static 'js/project.js' %}"></script>
+   {% endblock %}

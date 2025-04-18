@@ -1,0 +1,70 @@
+{% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+   <link rel="stylesheet" href="{% static 'css/project.css' %}">
+    <div class="container">
+        <h1>Structured Information Extraction from Documents</h1>
+
+        <div class="hero-image">
+            <img src="{% static 'images/document_extractor_hero.png' %}" alt="Document Extraction Illustration">
+        </div>
+
+        <p class="project-overview">
+            Implemented advanced sequence modeling for Named Entity Recognition (NER) and Relation Extraction from documents to automate the structuring of information and reduce manual review effort.
+        </p>
+
+        <section>
+            <h2 class="section-header">Key Responsibilities and Achievements</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    **Advanced Sequence Modeling:** Implemented advanced sequence modeling using fine-tuned BERT for NER and Relation Extraction, achieving a 92% F1-score on key entity extraction from scientific papers, a 20% improvement over baseline methods. [cite: 26]
+                </li>
+                <li class="feature-item">
+                    **Data Preprocessing Pipelines:** Engineered robust data preprocessing pipelines for diverse formats, successfully processing 98% of a large corpus (50,000 documents) and reducing data cleaning time by 40%. [cite: 27]
+                </li>
+                <li class="feature-item">
+                    **End-to-End Extraction Workflow:** Developed and containerized (Docker) an end-to-end extraction workflow, automating the structuring of information from raw documents and decreasing manual review effort by 75%. [cite: 28]
+                </li>
+                <li class="feature-item">
+                    **Deployment and Monitoring:** Deployed the pipeline on Azure using Azure Functions and monitored with Azure Monitor, maintaining &lt;500ms latency for extraction requests and improving model retraining frequency by 50% through automated monitoring. [cite: 29]
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-header">Technologies Used</h2>
+            <div class="tech-list">
+                <span class="tech-item">BERT</span>
+                <span class="tech-item">Docker</span>
+                <span class="tech-item">Azure</span>
+                <span class="tech-item">Azure Functions</span>
+                <span class="tech-item">Azure Monitor</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-header">Project Details</h2>
+            <p>
+                The Structured Information Extraction from Documents project focused on automating the process of extracting structured information from unstructured documents. This involved:
+            </p>
+            <ul>
+                <li>
+                    **Implementing advanced sequence modeling techniques:** This encompassed fine-tuning BERT models for Named Entity Recognition (NER) and Relation Extraction. The goal was to accurately identify and classify key information entities within documents (e.g., names, dates, organizations) and to understand the relationships between them. This significantly improved the accuracy of information extraction compared to traditional methods.
+                </li>
+                <li>
+                    **Developing robust data preprocessing pipelines:** This involved creating pipelines to handle documents in various formats, including PDFs, text files, and potentially other formats. The pipelines included steps for cleaning, formatting, and preparing the documents for the extraction process, ensuring that the models could effectively process a wide range of input data.
+                </li>
+                <li>
+                    **Creating an end-to-end extraction workflow:** This involved designing and building a complete system that automated the entire process of extracting information from documents. This included steps for document ingestion, preprocessing, model inference, and output formatting. Containerization with Docker ensured that the workflow could be easily deployed and scaled.
+                </li>
+                <li>
+                    **Deploying and monitoring the pipeline:** The extraction pipeline was deployed on the Azure cloud platform using Azure Functions for serverless execution. Azure Monitor was used to track the pipeline's performance, identify any issues, and trigger model retraining when necessary, ensuring the system remained efficient and accurate.
+                </li>
+            </ul>
+        </section>
+
+        </div>
+
+    <script src="{% static 'js/project.js' %}"></script>
+   {% endblock %}

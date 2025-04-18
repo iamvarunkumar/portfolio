@@ -1,0 +1,331 @@
+/* Artwork Styles */
+   .artwork-section {
+    margin-bottom: 2rem;
+    position: relative;
+   }
+
+   .artwork-category-header {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+   }
+
+   .artwork-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+   }
+
+   .artwork-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    height: 450px; /* Adjust this value */
+   }
+
+   .artwork-slide:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+   }
+
+   .artwork-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Adjust this value */
+    object-fit: contain; /* Or 'cover' if you prefer cropping */
+    border-bottom: 1px solid #333;
+    transition: opacity 0.3s ease-in-out;
+   }
+
+   .artwork-slide img:hover {
+    opacity: 0.8;
+   }
+
+   .artwork-caption {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #ddd;
+    text-align: center;
+    margin-top: auto; /* Push caption to bottom */
+   }
+
+   .carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 0 1rem;
+   }
+
+   .carousel-nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    opacity: 0.7;
+    position: absolute; /* Position over image */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10; /* Ensure buttons are on top */
+   }
+
+   .carousel-nav.prev {
+    left: 1rem;
+   }
+
+   .carousel-nav.next {
+    right: 1rem;
+   }
+
+   .carousel-nav i {
+    display: block;
+   }
+
+   /* Responsive Design */
+   @media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 2rem auto;
+    }
+
+    .artwork-carousel {
+        max-width: 100%;
+    }
+
+    .artwork-slide img {
+        max-height: 300px;
+    }
+   }
+
+   * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 3rem auto;
+            background-color: #1e1e1e;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.75rem;
+        }
+
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            color: #ccc;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #ddd;
+            margin-bottom: 1.25rem;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.2em;
+            margin-bottom: 0.75em;
+        }
+
+        ul li:before {
+            content: "\2022";
+            position: absolute;
+            left: 0;
+            color: #89cff0;
+        }
+
+        /* Project Specific Styles */
+        .project-overview {
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        .section-header {
+            background-color: #252525;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+            color: #bbb;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        /* Artwork Styles */
+   .artwork-section {
+    margin-bottom: 2rem;
+    position: relative;
+   }
+
+   .artwork-category-header {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+   }
+
+   .artwork-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+   }
+
+   .artwork-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    height: 450px;
+   }
+
+   .artwork-slide:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+   }
+
+   .artwork-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    border-bottom: 1px solid #333;
+    transition: opacity 0.3s ease-in-out;
+   }
+
+   .artwork-slide img:hover {
+    opacity: 0.8;
+   }
+
+   .artwork-caption {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #ddd;
+    text-align: center;
+    margin-top: auto;
+   }
+
+   .carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 0 1rem;
+   }
+
+   .carousel-nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    opacity: 0.7;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+   }
+
+   .carousel-nav.prev {
+    left: 1rem;
+   }
+
+   .carousel-nav.next {
+    right: 1rem;
+   }
+
+   .carousel-nav i {
+    display: block;
+   }
+
+   /* Responsive Design */
+   @media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 2rem auto;
+    }
+
+    .artwork-carousel {
+        max-width: 100%;
+    }
+
+    .artwork-slide img {
+        max-height: 300px;
+    }
+   }

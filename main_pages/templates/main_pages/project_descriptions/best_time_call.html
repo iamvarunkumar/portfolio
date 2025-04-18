@@ -1,0 +1,73 @@
+{% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+   <link rel="stylesheet" href="{% static 'css/project.css' %}">
+    <div class="container">
+        <h1>Recommendation Models - Debt Collection, Best Time to Call</h1>
+
+        <div class="image-gallery">
+            <img src="{% static 'images/best_time_to_call.jpg' %}" alt="Recommendation Models Illustration">
+        </div>
+
+        <p class="project-overview">
+            Developed machine learning applications for predicting customer repayment propensity and optimizing call volume and timing to improve collection rates and operational efficiency.
+        </p>
+
+        <section>
+            <h2 class="section-header">Key Responsibilities and Achievements <img src="{% static 'icons/key.png' %}"> </h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    **Repayment Propensity Prediction:** Developed an ML application predicting customer repayment propensity and optimizing call volume per customer.
+                </li>
+                <li class="feature-item">
+                    **Increased Collection Rates:** This resulted in a significant increase in collection rates while simultaneously reducing unnecessary outbound calls, leading to operational efficiency and cost savings.
+                </li>
+                <li class="feature-item">
+                    **KPIs and Reporting:** Designed and implemented KPIs aligned with business needs and set up an Azure scheduler job to execute data pipelines and generate weekly/monthly reports.
+                </li>
+                <li class="feature-item">
+                    **Reduced Unnecessary Contacts:** Leveraged data science to develop a strategy that identifies the right customer to call, reducing unnecessary contacts. This resulted in a 27% rise in successful connections and a streamlined calling process with fewer overall calls.
+                </li>
+                <li class="feature-item">
+                    **Best Time to Call Prediction:** Built an ML pipeline that recommends the "best time to call" for each customer, considering factors like time zones and regulations. This dual-model system predicts both the ideal time of day (morning, noon, etc.) and the specific hour with targeted call volume, leading to a 27% increase in right party contacts and balanced call distribution throughout the day.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-header">Technologies Used <img src="{% static 'icons/tech.png' %}"></h2>
+            <div class="tech-list">
+                <span class="tech-item">Azure scheduler</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-header">Project Details <img src="{% static 'icons/project.png' %}"></h2>
+            <p>
+                The Recommendation Models project focused on developing machine learning solutions to optimize debt collection processes. This involved:
+            </p>
+            <ul>
+                <li>
+                    **Repayment Propensity Prediction:** An ML application was developed to predict the likelihood of customers repaying their debts. This allowed for prioritizing outreach efforts and focusing on customers with a higher probability of repayment.
+                </li>
+                <li>
+                    **Increased Collection Rates:** By accurately predicting repayment propensity and optimizing call volume, collection rates were significantly increased, while also reducing the number of unnecessary calls, leading to cost savings and improved customer experience.
+                </li>
+                <li>
+                    **KPIs and Reporting:** To track the effectiveness of the solutions, relevant KPIs were designed and implemented. An Azure scheduler job was set up to automate the execution of data pipelines and generate regular reports, providing insights into the system's performance.
+                </li>
+                <li>
+                    **Reduced Unnecessary Contacts:** A data-driven strategy was developed to identify the most appropriate customers to contact, minimizing unnecessary calls and improving the efficiency of the calling process. This resulted in a substantial increase in successful connections and a reduction in the overall number of calls made.
+                </li>
+                <li>
+                    **Best Time to Call Prediction:** A machine learning pipeline was created to recommend the optimal time to call each customer. This considered factors such as time zones, customer availability, and relevant regulations. The system predicted both the best time of day and the specific hour to maximize the chances of reaching the right party and ensure a balanced call distribution throughout the day.
+                </li>
+            </ul>
+        </section>
+
+        </div>
+
+    
+<script src="{% static 'js/project.js' %}"></script>
+   {% endblock %}

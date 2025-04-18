@@ -1,0 +1,69 @@
+{% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+   <link rel="stylesheet" href="{% static 'css/project.css' %}">
+    <div class="container">
+        <h1>LLM-Powered Artwork Description Generator</h1>
+
+        <div class="image-gallery">
+            <img src="{% static 'images/information_extraction.jpg' %}" alt="LLM Artwork Generator Illustration">
+        </div>
+
+        <p class="project-overview">
+            Developed a web application to automatically generate marketing copy, tags, and hashtags for digital artwork using a Large Language Model (LLM) to streamline the upload process and enhance listing quality.
+        </p>
+
+        <section>
+            <h2 class="section-header">Key Responsibilities and Achievements</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    **Web Application Development:** Developed a web application using Python (Django) and Bootstrap to automatically generate marketing copy for digital artwork.
+                </li>
+                <li class="feature-item">
+                    **User Interface Design:** Engineered a user interface with input fields and dropdowns to capture art style, color, and mood, which are then used to create detailed prompts for the LLM.
+                </li>
+                <li class="feature-item">
+                    **LLM Integration:** Integrated the Google Gemini API to generate three unique product descriptions, tags, and hashtags per artwork, enhancing the listing quality and streamlining the upload process.
+                </li>
+                <li class="feature-item">
+                    **User-Friendly Selection Mechanism:** Implemented a user-friendly selection mechanism, allowing artists to choose the most fitting description, thus minimizing the need for manual edits and improving overall efficiency.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-header">Technologies Used</h2>
+            <div class="tech-list">
+                <span class="tech-item">Python (Django)</span>
+                <span class="tech-item">Bootstrap</span>
+                <span class="tech-item">Google Gemini API</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-header">Project Details</h2>
+            <p>
+                The LLM-Powered Artwork Description Generator project focused on developing a tool to assist artists in creating compelling marketing content for their digital artwork. This involved:
+            </p>
+            <ul>
+                <li>
+                    **Web Application Development:** A fully functional web application was built using Python and the Django framework. This application provided the platform for artists to interact with the LLM.
+                </li>
+                <li>
+                    **User Interface Design:** A key aspect was designing an intuitive and user-friendly interface. This interface allowed artists to input specific details about their artwork, such as its style, dominant colors, and the mood it evokes. These inputs were crucial for generating effective prompts for the LLM.
+                </li>
+                <li>
+                    **LLM Integration:** The core functionality relied on integrating the Google Gemini API. This powerful language model was used to generate creative and descriptive marketing copy based on the user's input.
+                </li>
+                <li>
+                    **User-Friendly Selection Mechanism:** To enhance usability, a mechanism was implemented that presented artists with multiple generated descriptions, tags, and hashtags. This allowed them to choose the most suitable options or make minor edits, saving significant time and effort compared to writing everything from scratch.
+                </li>
+            </ul>
+        </section>
+
+        </div>
+
+
+    <script src="{% static 'js/project.js' %}"></script>
+   {% endblock %}

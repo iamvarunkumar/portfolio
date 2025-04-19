@@ -1,0 +1,15 @@
+runConfig:
+  # You can adjust CPU and memory based on your app's needs
+  cpu: 1
+  memoryMiB: 512
+  # Concurrency is the number of requests a single instance can handle simultaneously
+  concurrency: 80
+
+# Environment variables
+env:
+  - variable: DJANGO_SETTINGS_MODULE
+    value: portfolio.settings # Make sure this matches your Django project name
+    availability: RUNTIME
+  - variable: PYTHON_VERSION
+    value: 3.9 # Or the Python version you are using
+    availability: BUILD

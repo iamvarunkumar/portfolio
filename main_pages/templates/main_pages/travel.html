@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+   <html lang="en">
+
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Travel Adventures</title>
+    {% load static %}
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/travel.css' %}">
+   </head>
+
+   <body>
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#side-projects">Side Projects</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+            <li><a href="{% url 'main_pages:travel' %}">Travel</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>My Travel Adventures to <span id="typewriter"></span> <i class="fas fa-plane"></i></h1>
+        <div class="takeoff-animation"></div>
+    </header>
+
+    <main class="container">
+        <section class="country-section">
+            <h2>Vietnam</h2>
+            <div class="image-row">
+                <img src="{% static 'travel_images/vietnam1.jpg' %}" alt="Vietnam 1">
+                <img src="{% static 'travel_images/vietnam2.jpg' %}" alt="Vietnam 2">
+                <img src="{% static 'travel_images/vietnam3.jpg' %}" alt="Vietnam 3">
+            </div>
+            <p class="country-text">
+                Vietnam is a Southeast Asian country known for its beaches, rivers, bustling cities and Buddhist
+                pagodas.
+            </p>
+        </section>
+
+        <section class="country-section">
+            <h2>Azerbaijan</h2>
+            <div class="image-row">
+                <img src="{% static 'travel_images/azerbaijan1.jpg' %}" alt="Azerbaijan 1">
+                <img src="{% static 'travel_images/azerbaijan2.jpg' %}" alt="Azerbaijan 2">
+                <img src="{% static 'travel_images/azerbaijan3.jpg' %}" alt="Azerbaijan 3">
+            </div>
+            <p class="country-text">
+                Azerbaijan, a nation and former Soviet republic, is bounded by the Caspian Sea and Caucasus
+                Mountains, which span Asia and Europe.
+            </p>
+        </section>
+
+        <section class="country-section">
+            <h2>Georgia</h2>
+            <div class="image-row">
+                <img src="{% static 'travel_images/georgia1.jpg' %}" alt="Georgia 1">
+                <img src="{% static 'travel_images/georgia2.jpg' %}" alt="Georgia 2">
+                <img src="{% static 'travel_images/georgia3.jpg' %}" alt="Georgia 3">
+            </div>
+            <p class="country-text">
+                Georgia is a country at the intersection of Europe and Asia. It's a former Soviet republic that's home to
+                Caucasus Mountain villages and Black Sea beaches.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank" rel="noopener noreferrer" title="Threads"><i
+                    class="fa-brands fa-threads"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer" title="Instagram"><i
+                    class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:iamvarunkumar23@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://medium.com/@iamvarunkumar23" target="_blank" rel="noopener noreferrer"
+                title="Medium"><i class="fa-brands fa-medium"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/itsvarunkumar/" target="_blank" rel="noopener noreferrer"
+                title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <p>&copy; {% now "Y" %} Varun Kumar. All Rights Reserved.</p>
+    </footer>
+
+    {% comment %} <script src="{% static 'js/script.js' %}"></script> {% endcomment %}
+    <script src="{% static 'js/travel.js' %}"></script>
+   </body>
+
+   </html>

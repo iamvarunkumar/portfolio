@@ -1,0 +1,108 @@
+/* Tools Page Styles */
+
+   .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 2rem;
+    margin-top: 2rem;
+   }
+
+   .tool-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth, bouncy transition */
+    position: relative;
+    height: 350px;
+    width: 100%; /* Ensure cards take full width in grid */
+   }
+
+   .tool-card:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+   }
+
+   .tool-card:active {
+    transform: scale(0.95); /* Shrink slightly on click */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Less shadow on click */
+   }
+
+   .tool-card img {
+    width: 100%;
+    height: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth, bouncy transition */
+   }
+
+   .tool-card:hover img {
+    transform: translateY(-50px); /* Move image up on hover */
+   }
+
+   .tool-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth, bouncy transition */
+    text-align: center;
+   }
+
+   .tool-card:hover .tool-info {
+    opacity: 1;
+   }
+
+   .tool-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+   }
+
+   .tool-description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+   }
+
+   .tool-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #89cff0;
+    color: #121212;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+   }
+
+   .tool-link:hover {
+    background-color: #5dade2;
+   }
+
+   /* Responsive Design */
+   @media (max-width: 768px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        width: 100%; /* Full width on small screens */
+        height: auto; /* Allow height to adjust */
+    }
+
+    .tool-card img {
+        max-height: 250px; /* Adjust image height on small screens */
+    }
+   }
+
+   /* General Container Styling */
+   .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+   }

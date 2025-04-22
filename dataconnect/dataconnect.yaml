@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "my_protfolio"
+location: "asia-east1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "my_protfolio-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

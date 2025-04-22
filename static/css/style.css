@@ -1,0 +1,654 @@
+/* --- Google Font Imports --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap'); /* Typewriter font */
+
+/* --- Base & Dark Mode Theme --- */
+body {
+ font-family: 'Poppins', sans-serif;
+ font-size: 16px;
+ margin: 0;
+ padding: 0;
+ line-height: 1.6;
+ background-color: #1a1a1a;
+ color: #f0f0f0;
+ padding-top: 60px;
+}
+
+h1,
+h2,
+h3 {
+ color: #ffffff;
+ font-weight: 500;
+ margin-bottom: 0.8em;
+}
+
+h1 {
+ font-size: 2.5em;
+}
+
+h2 {
+ font-size: 1.8em;
+}
+
+h3 {
+ font-size: 1.3em;
+}
+
+a {
+ color: #80dfff;
+ text-decoration: none;
+ transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+ color: #ffffff;
+ text-decoration: none;
+}
+
+/* --- Navigation --- */
+nav {
+ background-color: #222222;
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ z-index: 1000;
+ padding: 0.8rem 0;
+}
+
+nav ul {
+ list-style: none;
+ padding: 0;
+ margin: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+nav ul li {
+ margin: 0 1rem;
+}
+
+nav ul li a {
+ display: block;
+ padding: 0.6rem 0.8rem; /* Reduced horizontal padding */
+ color: #d1d1d1;
+ text-decoration: none;
+ font-size: 0.9rem;
+ font-weight: 400;
+ border-radius: 0.25rem;
+ transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+ display: flex; /* Use flex to align icon and text */
+ align-items: center; /* Center vertically */
+ gap: 0.4rem; /* Spacing between icon and text */
+}
+
+nav ul li a:hover {
+ background-color: rgba(255, 255, 255, 0.05);
+ color: #ffffff;
+}
+
+nav ul li i {
+ font-size: 1.1rem; /* Icon size */
+ margin-right: 0.2rem; /* Spacing if needed */
+}
+
+/* --- Header --- */
+header {
+ text-align: center;
+ padding: 3rem 1rem;
+}
+
+header h1 {
+ font-size: 2.8em;
+ color: #ffffff;
+ margin-bottom: 0.6rem;
+}
+
+header p {
+ font-size: 1.1rem;
+ color: #b3b3b3;
+}
+
+#typewriter {
+ font-family: 'Special Elite', monospace; /* Keep typewriter font */
+ font-weight: 400;
+ color: #80dfff;
+ background-color: rgba(0, 0, 0, 0.1);
+ padding: 0.4rem 0.8rem;
+ border-radius: 0.2rem;
+ font-size: 1.2rem;
+}
+
+/* --- Page Sections --- */
+.page-section {
+ padding: 4rem 1rem;
+ border-bottom: 1px solid #333333;
+}
+
+.page-section:last-of-type {
+ border-bottom: none;
+}
+
+.page-section h2 {
+ text-align: center;
+ margin-bottom: 2.5rem;
+ font-size: 2rem;
+}
+
+/* --- Portfolio Grid & Cards --- */
+.portfolio-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+ gap: 1.5rem;
+ margin-top: 2rem;
+}
+
+a.project-card-link {
+ text-decoration: none;
+ color: inherit;
+ display: block;
+ width: 100%;
+}
+
+.project-card {
+ background-color: #222222;
+ border-radius: 0.5rem;
+ overflow: hidden;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+ display: flex;
+ flex-direction: column;
+ height: 100%;
+}
+
+.project-card:hover {
+ transform: translateY(-0.25rem);
+ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.project-illustration {
+ width: 100%;
+ height: 180px;
+ object-fit: cover;
+ border-radius: 0.5rem 0.5rem 0 0;
+ margin-bottom: 1rem;
+}
+
+.project-card h3 {
+ font-size: 1.1rem;
+ margin: 0.8rem 1rem 0.5rem;
+ color: #ffffff;
+}
+
+.project-card p {
+ font-size: 0.9rem;
+ color: #b3b3b3;
+ margin: 0 1rem 1rem;
+ flex-grow: 1;
+}
+
+.click-prompt {
+ text-align: right;
+ font-size: 0.8rem;
+ color: #80dfff;
+ padding: 0.5rem 1rem;
+ border-top: 1px solid #333333;
+}
+
+/* --- Blog Card Specifics --- */
+.blog-card {}
+
+.read-more-link {
+ display: inline-block;
+ margin-top: 0.8rem;
+ color: #80dfff;
+ font-weight: 500;
+ transition: color 0.2s ease-in-out;
+}
+
+.read-more-link:hover {
+ color: #ffffff;
+ text-decoration: underline;
+}
+
+/* --- Dynamic Number --- */
+.dynamic-number {
+ font-weight: 500;
+ color: #80dfff;
+ display: inline-block;
+ transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+ cursor: default;
+ background-color: rgba(128, 223, 255, 0.05);
+ padding: 0.2rem 0.4rem;
+ border-radius: 0.2rem;
+}
+
+.dynamic-number:hover {
+ transform: scale(1.05);
+ color: #ffffff;
+}
+
+/* --- Contact Form Styling --- */
+#contact form {
+ max-width: 600px;
+ margin: 1rem auto;
+ padding: 1.5rem;
+ background-color: #222222;
+ border-radius: 0.5rem;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#contact form p {
+ margin-bottom: 1rem;
+}
+
+#contact form label {
+ display: block;
+ margin-bottom: 0.4rem;
+ font-weight: 500;
+ color: #f0f0f0;
+ font-size: 0.9rem;
+}
+
+#contact form input[type="text"],
+#contact form input[type="email"],
+#contact form textarea {
+ width: 100%;
+ padding: 0.6rem;
+ border: 1px solid #333333;
+ border-radius: 0.3rem;
+ box-sizing: border-box;
+ background-color: #1a1a1a;
+ color: #f0f0f0;
+ margin-top: 0.2rem;
+ font-family: 'Poppins', sans-serif;
+ font-size: 0.9rem;
+}
+
+#contact form input[type="text"]::placeholder,
+#contact form input[type="email"]::placeholder,
+#contact form textarea::placeholder {
+ color: #777777;
+}
+
+#contact form textarea {
+ resize: vertical;
+ min-height: 80px;
+}
+
+#contact form button[type="submit"] {
+ background-color: #80dfff;
+ color: #1a1a1a;
+ padding: 0.6rem 1.2rem;
+ border: none;
+ border-radius: 0.3rem;
+ cursor: pointer;
+ font-size: 0.95rem;
+ font-weight: 500;
+ transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+ display: block;
+ width: 100%;
+ margin-top: 1rem;
+}
+
+#contact form button[type="submit"]:hover {
+ background-color: #66c2ff;
+ color: #ffffff;
+}
+
+/* Form Message Styling */
+.form-messages {
+ max-width: 600px;
+ margin: 1rem auto;
+}
+
+.alert {
+ padding: 0.8rem;
+ margin-bottom: 0.8rem;
+ border: 1px solid transparent;
+ border-radius: 0.3rem;
+ font-size: 0.9rem;
+}
+
+.alert-success {
+ color: #b3e0b3;
+ background-color: #142914;
+ border-color: #1f3a1f;
+}
+
+.alert-error {
+ color: #f2b3b3;
+ background-color: #291414;
+ border-color: #3a1f1f;
+}
+
+/* Form Field Error Styling */
+.errorlist {
+ color: #f2b3b3;
+ list-style-type: none;
+ padding: 0;
+ margin: 0.2rem 0 0 0;
+ font-size: 0.8rem;
+}
+
+/* --- Footer Styling --- */
+footer {
+ background-color: #1a1a1a;
+ color: #777777;
+ text-align: center;
+ padding: 1.5rem 1rem;
+ margin-top: 3rem;
+ border-top: 1px solid #333333;
+ font-size: 0.85rem;
+}
+
+.social-links {
+ margin-bottom: 0.8rem;
+}
+
+.social-links a {
+ color: #777777;
+ margin: 0 0.8rem;
+ font-size: 1.2rem;
+ transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.social-links a:hover {
+ color: #ffffff;
+ transform: scale(1.1);
+}
+
+footer p {
+ margin-top: 0.6rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+ a.project-card-link {
+     width: calc(50% - 1rem); /* 1rem = 16px */
+ }
+}
+
+@media (max-width: 768px) {
+ a.project-card-link {
+     width: calc(100% - 1rem);
+ }
+
+ nav ul {
+     flex-direction: column;
+     align-items: center;
+ }
+
+ nav ul li {
+     margin: 0.4rem 0;
+ }
+
+ body {
+     padding-top: 55px;
+ }
+
+ h1 {
+     font-size: 2.2em;
+ }
+
+ h2 {
+     font-size: 1.6em;
+ }
+
+ h3 {
+     font-size: 1.2em;
+ }
+
+ header h1 {
+     font-size: 2.6em;
+ }
+
+ header p {
+     font-size: 1rem;
+ }
+
+ #typewriter {
+     font-size: 1.1rem;
+ }
+
+ .project-card h3 {
+     font-size: 1.05rem;
+ }
+
+ .project-card p {
+     font-size: 0.85rem;
+ }
+}
+
+/* --- Travel Page Specific --- */
+.travel-container {
+ max-width: 1000px;
+ margin: 1.5rem auto;
+ padding: 2rem;
+ background-color: #222222;
+ border-radius: 0.4rem;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.travel-container h1 {
+ text-align: center;
+ margin-bottom: 2rem;
+ font-size: 2.2rem;
+}
+
+.country-gallery {
+ margin-bottom: 2.5rem;
+ padding-bottom: 1.5rem;
+ border-bottom: 1px solid #333333;
+}
+
+.country-gallery:last-child {
+ border-bottom: none;
+}
+
+.country-gallery h2 {
+ color: #80dfff;
+ margin-bottom: 1.2rem;
+ font-size: 1.6rem;
+}
+
+.photo-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+ gap: 0.8rem;
+ margin-bottom: 1.2rem;
+}
+
+.photo-item img {
+ width: 100%;
+ height: 160px;
+ object-fit: cover;
+ border-radius: 0.3rem;
+ display: block;
+ border: 1px solid #333333;
+ transition: transform 0.2s ease-in-out;
+}
+
+.photo-item img:hover {
+ transform: scale(1.05);
+}
+
+/* === Icon Styling === */
+nav ul li a i {
+ margin-right: 0.5rem; /* Spacing between icon and text */
+ font-size: 1.1rem; /* Icon size */
+ vertical-align: middle; /* Align icon vertically */
+}
+
+.nav-home i { /* Example: Home icon color */
+ color: #ff6f61; /* Orange-ish */
+}
+
+.nav-about i {
+ color: #6b5b95; /* Purple-ish */
+}
+
+.nav-portfolio i {
+ color: #88b04b; /* Green-ish */
+}
+
+/* Add similar styles for other icons */
+.nav-tools i {
+ color: #f7cac9; /* Pink-ish */
+}
+
+.nav-blog i {
+ color: #92a8d1; /* Blue-ish */
+}
+
+.nav-projects i {
+ color: #955251; /* Brown-ish */
+}
+
+.nav-contact i {
+ color: #e07a5f; /* Coral-ish */
+}
+
+.nav-research i {
+ color: #4a4a4a; /* Dark Gray */
+}
+
+.nav-audio i {
+ color: #81b29a; /* Muted Green */
+}
+
+.nav-notes i {
+ color: #f2cc8f; /* Mustard */
+}
+
+.nav-interview i {
+ color: #606c88; /* Slate */
+}
+
+.nav-art i {
+ color: #d16ba9; /* Mauve */
+}
+
+.nav-travel i {
+ color: #a8a2a2; /* Light Gray */
+}
+/* Keep typewriter font */
+header h1 {
+    font-size: 2.8em;
+    color: #ffffff;
+    margin-bottom: 0.6rem;
+}
+
+#typewriter {
+    font-family: 'Special Elite', monospace;
+    font-weight: 400;
+    color: #80dfff;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+}
+
+.project-detail {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+   }
+
+   .project-description {
+        font-size: 1.1em;
+        color: #555;
+        line-height: 1.6;
+   }
+
+   .project-images {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+   }
+
+   .project-images img {
+        max-width: 300px;
+        height: auto;
+        border-radius: 4px;
+   }
+
+   /* ... More styles ... */
+.glowing-btn {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111; /* Dark background for contrast */
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Smooth transition for non-hover states */
+    border: 2px solid transparent; /* Start with transparent border */
+}
+
+.glowing-btn:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0; /* Hidden by default */
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glowing-btn:hover:before {
+    opacity: 1; /* Show glow on hover */
+}
+
+.glowing-btn:active {
+    color: #000
+}
+
+.glowing-btn:active:after {
+    background: transparent;
+}
+
+.glowing-btn:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111; /* Match button background */
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+/* Style for the button after download */
+.glowing-btn:disabled {
+    cursor: not-allowed;
+    background: #555; /* Darker grey when disabled */
+    color: #aaa;
+}
+
+.glowing-btn:disabled:before {
+    opacity: 0; /* Turn off glow when disabled */
+}

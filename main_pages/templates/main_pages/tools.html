@@ -1,0 +1,109 @@
+{# tools.html #}
+{% extends 'main_pages/base.html' %}
+{% load static %}
+
+{% block content %}
+{# Link the specific CSS for this page if it exists #}
+<link rel="stylesheet" href="{% static 'css/tools.css' %}">
+
+<div class="container">
+    <h1>Tools</h1>
+
+    <p class="project-overview">
+        Explore a collection of powerful tools designed to enhance your career and showcase your skills.
+    </p>
+
+    <div class="tools-grid">
+
+        {# Resume Wizard Card #}
+        <div class="tool-card" data-tool="resume_wizard">
+            <img src="{% static 'tools/resume_checker.jpg' %}" alt="Resume Wizard" class="tool-image">
+            <div class="tool-info">
+                <h2>Resume Wizard</h2>
+                <p class="tool-description">Instantly score your resume and get actionable tips for improvement.</p>
+                {# CORRECTED: Use the namespaced URL 'app_name:url_name' #}
+                <a href="{% url 'main_pages:resume_wizard' %}" class="tool-link">Use Tool</a>
+            </div>
+        </div>
+
+        {# JobMatch Pro Card #}
+        <div class="tool-card" data-tool="job_match_pro">
+            <img src="{% static 'main_pages/resume_jd.jpg' %}" alt="JobMatch Pro" class="tool-image">
+            <div class="tool-info">
+                <h2>JobMatch Pro</h2>
+                <p class="tool-description">See how well your resume matches specific job descriptions.</p>
+                {# CORRECTED: Use the namespaced URL 'app_name:url_name' #}
+                <a href="{% url 'main_pages:resume_match_pro' %}" class="tool-link">Use Tool</a>
+            </div>
+        </div>
+
+        {# CoverCraft Card #}
+        <div class="tool-card" data-tool="cover_craft">
+            <img src="{% static 'tools/cover.jpg' %}" alt="CoverCraft" class="tool-image">
+            <div class="tool-info">
+                <h2>CoverCraft</h2>
+                <p class="tool-description">Generate compelling cover letters tailored to your application.</p>
+                {# CORRECTED: Use the namespaced URL 'app_name:url_name' #}
+                <a href="{% url 'main_pages:cover_craft' %}" class="tool-link">Use Tool</a>
+            </div>
+        </div>
+
+        {# IllustrateAI Card - Placeholder Link #}
+        {# IMPORTANT: Define a view and URL pattern named 'illustrate_ai' in urls.py #}
+        <div class="tool-card" data-tool="illustrate_ai">
+            <img src="{% static 'tools/ai.jpg' %}" alt="IllustrateAI" class="tool-image">
+            <div class="tool-info">
+                <h2>IllustrateAI</h2>
+                <p class="tool-description">Create stunning visuals to enhance your online portfolio and presentations.</p>
+                {# Replace '#' with the actual URL name once defined #}
+                <a href="#" class="tool-link disabled-link">Coming Soon</a> {# Example: Link disabled #}
+                {# Or use: <a href="{% url 'main_pages:illustrate_ai' %}" class="tool-link">Use Tool</a> #}
+            </div>
+        </div>
+
+        {# Code Explainer Card - Placeholder Link #}
+         {# IMPORTANT: Define a view and URL pattern named 'code_explainer' in urls.py #}
+        <div class="tool-card" data-tool="code_explainer">
+            <img src="{% static 'tools/code.jpg' %}" alt="Code Explainer" class="tool-image">
+            <div class="tool-info">
+                <h2>Code Explainer</h2>
+                <p class="tool-description">Get clear and concise explanations of complex code snippets.</p> {# Updated description slightly #}
+                {# Replace '#' with the actual URL name once defined #}
+                <a href="#" class="tool-link disabled-link">Coming Soon</a>
+                {# Or use: <a href="{% url 'main_pages:code_explainer' %}" class="tool-link">Use Tool</a> #}
+            </div>
+        </div>
+
+         {# SkillSprint Card - Placeholder Link #}
+         {# IMPORTANT: Define a view and URL pattern named 'skill_sprint' in urls.py #}
+        <div class="tool-card" data-tool="skill_sprint">
+            <img src="{% static 'tools/skill.jpg' %}" alt="SkillSprint" class="tool-image">
+            <div class="tool-info">
+                <h2>SkillSprint</h2>
+                <p class="tool-description">Identify your key strengths and areas for development.</p> {# Updated description slightly #}
+                {# Replace '#' with the actual URL name once defined #}
+                <a href="#" class="tool-link disabled-link">Coming Soon</a>
+                {# Or use: <a href="{% url 'main_pages:skill_sprint' %}" class="tool-link">Use Tool</a> #}
+            </div>
+        </div>
+
+        {# Portfolio Pro Card - Placeholder Link #}
+         {# IMPORTANT: Define a view and URL pattern named 'portfolio_pro' in urls.py #}
+        <div class="tool-card" data-tool="portfolio_pro">
+            <img src="{% static 'tools/portfolio.jpg' %}" alt="Portfolio Pro" class="tool-image">
+            <div class="tool-info">
+                <h2>Portfolio Pro</h2>
+                <p class="tool-description">Build a professional online portfolio to showcase your projects.</p> {# Updated description slightly #}
+                 {# Replace '#' with the actual URL name once defined #}
+                <a href="#" class="tool-link disabled-link">Coming Soon</a>
+                {# Or use: <a href="{% url 'main_pages:portfolio_pro' %}" class="tool-link">Use Tool</a> #}
+            </div>
+        </div>
+
+    </div> {# End tools-grid #}
+
+</div> {# End container #}
+
+{# Link the specific JS for this page if it exists #}
+<script src="{% static 'js/tools.js' %}"></script>
+{% endblock %}

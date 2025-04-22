@@ -1,0 +1,176 @@
+{% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+    <link rel="stylesheet" href="{% static 'css/artwork.css' %}">
+    <div class="container">
+        <h1>Artworks</h1>
+
+        <p class="project-overview">
+            A collection of my digital artwork, showcasing various styles and themes.
+        </p>
+
+        {% comment %} Miyamoto Mushashi {% endcomment %}
+        <section class="artwork-section">
+            <h2 class="section-header artwork-category-header">Miyamoto Mushashi</h2>
+            <div class="artwork-carousel">
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/mushashi1.jpg' %}" alt="Vagabond Artwork 1">
+                    <p class="artwork-caption">Description of Vagabond Artwork 1</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/mushashi2.jpg' %}" alt="Vagabond Artwork 2">
+                    <p class="artwork-caption">Description of Vagabond Artwork 2</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/mushashi3.jpg' %}" alt="Vagabond Artwork 3">
+                    <p class="artwork-caption">Description of Vagabond Artwork 3</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-nav prev" data-carousel="miyamotomushashi"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav next" data-carousel="miyamotomushashi"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        {% comment %} Berserk {% endcomment %}
+        <section class="artwork-section">
+            <h2 class="section-header artwork-category-header">Berserk</h2>
+            <div class="artwork-carousel">
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/berserk1.png' %}" alt="Berserk Artwork 1">
+                    <p class="artwork-caption">Description of Berserk Artwork 1</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/berserk2.jpg' %}" alt="Berserk Artwork 2">
+                    <p class="artwork-caption">Description of Berserk Artwork 2</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/berserk3.jpg' %}" alt="Berserk Artwork 3">
+                    <p class="artwork-caption">Description of Berserk Artwork 3</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-nav prev" data-carousel="berserk"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav next" data-carousel="berserk"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        {% comment %} One Piece {% endcomment %}
+        <section class="artwork-section">
+            <h2 class="section-header artwork-category-header">One Piece</h2>
+            <div class="artwork-carousel">
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/one_piece.jpg' %}" alt="One Piece Artwork 1">
+                    <p class="artwork-caption">Description of One Piece Artwork 1</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/one_piece1.jpg' %}" alt="One Piece Artwork 2">
+                    <p class="artwork-caption">Description of One Piece Artwork 2</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/one_piece2.jpg' %}" alt="One Piece Artwork 3">
+                    <p class="artwork-caption">Description of One Piece Artwork 3</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-nav prev" data-carousel="onepiece"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav next" data-carousel="onepiece"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        {% comment %} Jujutsu Kaisen {% endcomment %}
+        <section class="artwork-section">
+            <h2 class="section-header artwork-category-header">Jujutsu Kaisen</h2>
+            <div class="artwork-carousel">
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/jjk1.jpg' %}" alt="Jujutsu Kaisen Artwork 1">
+                    <p class="artwork-caption">Description of Jujutsu Kaisen Artwork 1</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/jjk2.jpg' %}" alt="Jujutsu Kaisen Artwork 2">
+                    <p class="artwork-caption">Description of Jujutsu Kaisen Artwork 2</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/jjk3.jpg' %}" alt="Jujutsu Kaisen Artwork 3">
+                    <p class="artwork-caption">Description of Jujutsu Kaisen Artwork 3</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-nav prev" data-carousel="jujutsukaisen"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav next" data-carousel="jujutsukaisen"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        {% comment %} Abstract Art {% endcomment %}
+        <section class="artwork-section">
+            <h2 class="section-header artwork-category-header">Abstract Art</h2>
+            <div class="artwork-carousel">
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/abstract1.jpg' %}" alt="Abstract Artwork 1">
+                    <p class="artwork-caption">Description of Abstract Artwork 1</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/abstract2.jpg' %}" alt="Abstract Artwork 2">
+                    <p class="artwork-caption">Description of Abstract Artwork 2</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/abstract3.jpg' %}" alt="Abstract Artwork 3">
+                    <p class="artwork-caption">Description of Abstract Artwork 3</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-nav prev" data-carousel="abstractart"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav next" data-carousel="abstractart"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        {% comment %} Joker - Hand Drawn on paper {% endcomment %}
+        <section class="artwork-section">
+            <h2 class="section-header artwork-category-header">Joker - Hand Drawn on paper</h2>
+            <div class="artwork-carousel">
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/joker1.jpg' %}" alt="Joker Artwork 1">
+                    <p class="artwork-caption">Description of Joker Artwork 1</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/joker2.jpg' %}" alt="Joker Artwork 2">
+                    <p class="artwork-caption">Description of Joker Artwork 2</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/joker3.jpg' %}" alt="Joker Artwork 3">
+                    <p class="artwork-caption">Description of Joker Artwork 3</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-nav prev" data-carousel="joker-hand-drawn-on-paper"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav next" data-carousel="joker-hand-drawn-on-paper"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        {% comment %} Tarrot Cards {% endcomment %}
+        <section class="artwork-section">
+            <h2 class="section-header artwork-category-header">Tarrot Cards</h2>
+            <div class="artwork-carousel">
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/tarrot1.jpg' %}" alt="Tarot Card Artwork 1">
+                    <p class="artwork-caption">Description of Tarot Card Artwork 1</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/tarrot2.jpg' %}" alt="Tarot Card Artwork 2">
+                    <p class="artwork-caption">Description of Tarot Card Artwork 2</p>
+                </div>
+                <div class="artwork-slide">
+                    <img src="{% static 'artworks/tarrot3.jpg' %}" alt="Tarot Card Artwork 3">
+                    <p class="artwork-caption">Description of Tarot Card Artwork 3</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-nav prev" data-carousel="tarrotcards"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav next" data-carousel="tarrotcards"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+    </div>
+    <script src="{% static 'js/artwork.js' %}"></script>
+   {% endblock %}

@@ -1,0 +1,326 @@
+{% extends 'main_pages/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="tool-container">
+    <h1>Resume-JD Matcher</h1>
+
+    <p class="tool-description">
+        Upload your resume (PDF) and paste the Job Description to see how well they match and get improvement suggestions.
+    </p>
+
+    <div class="tool-interface">
+        <form id="match-upload-form" method="post" enctype="multipart/form-data" action="{% url 'main_pages:analyze_resume_jd_match' %}">
+            {% csrf_token %}
+
+            <label for="resume-file" class="upload-label">Select Resume (PDF)</label>
+            <input type="file" id="resume-file" name="resume" accept=".pdf" required>
+
+            <label for="job-description" class="upload-label">Paste Job Description</label>
+            <textarea id="job-description" name="job_description" rows="10" placeholder="Paste the full job description here..." required></textarea>
+            <button type="submit" id="analyze-match-button" class="analyze-button">Analyze Match</button>
+            <div id="analysis-progress" class="upload-progress"></div> </form>
+
+        <div id="match-results" class="results-container" style="display: none;"> <h2>Analysis Results</h2>
+            <div class="score-display">
+                <span class="score-label">Match Score:</span>
+                <span id="match-score" class="score">--</span>%
+            </div>
+            <div class="recommendations"> <h3>Analysis & Recommendations</h3>
+                <ul id="match-analysis">
+                    <li>Upload resume and JD to see analysis.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="tool-examples">
+        <h2>Example</h2>
+        <p>See which keywords from the Job Description are present or missing in your resume, and get tips to tailor it better.</p>
+    </div>
+
+</div>
+
+<style>
+    /* Inherits styles from resume_wizard or base CSS */
+
+    .tool-container {
+        width: 90%;
+        max-width: 700px; /* Slightly wider for textarea */
+        margin: 2rem auto;
+        background-color: #1e1e1e;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        color: #f0f0f0;
+    }
+
+     .tool-container h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #fff;
+        text-align: center;
+    }
+
+    .tool-description {
+        font-size: 1rem;
+        color: #ddd;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+     .tool-interface {
+        margin-bottom: 2rem;
+    }
+
+    .upload-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        margin-top: 1rem; /* Add space above labels */
+        font-weight: bold;
+        color: #89cff0;
+    }
+
+    #resume-file,
+    #job-description { /* Style textarea similarly to file input */
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #333;
+        color: #fff;
+        margin-bottom: 1rem;
+        box-sizing: border-box; /* Include padding in width */
+        font-family: inherit; /* Use default font */
+        font-size: 0.9rem;
+    }
+
+    #job-description {
+        resize: vertical; /* Allow vertical resize */
+    }
+
+
+    .analyze-button {
+        display: block; /* Make button block */
+        width: 100%; /* Make button full width */
+        padding: 0.85rem 1.25rem;
+        background-color: #89cff0;
+        color: #121212;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+        margin-top: 1rem;
+    }
+
+    .analyze-button:hover {
+        background-color: #5dade2;
+    }
+
+    .analyze-button:disabled { /* Style for disabled button */
+        background-color: #555;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    .upload-progress {
+        margin-top: 1rem;
+        text-align: center;
+        color: #89cff0;
+        min-height: 1.2em; /* Reserve space */
+    }
+
+    .results-container {
+        margin-top: 2rem;
+        padding: 1.5rem; /* More padding */
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #2a2a2a; /* Slightly different background */
+    }
+
+     .results-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #fff;
+        text-align: center;
+    }
+
+     .score-display {
+        font-size: 1.4rem; /* Larger score */
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+     .score-label {
+        font-weight: normal; /* Normal weight for label */
+        color: #bbb;
+        margin-right: 0.5rem;
+    }
+
+     .score {
+        color: #89cff0; /* Highlight score color */
+        font-size: 1.6rem;
+    }
+
+    .recommendations h3 { /* Analysis section header */
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: #89cff0;
+        border-bottom: 1px solid #555; /* Add separator */
+        padding-bottom: 0.5rem;
+    }
+
+    .recommendations ul {
+        list-style-type: none; /* Remove default bullets */
+        padding-left: 0; /* Remove default padding */
+        margin-left: 0;
+    }
+
+     .recommendations li {
+        font-size: 0.95rem;
+        color: #ddd;
+        margin-bottom: 0.75rem; /* More space between items */
+        padding-left: 1.5rem; /* Indent content */
+        position: relative;
+        line-height: 1.4;
+    }
+     .recommendations li::before { /* Custom bullet */
+        content: '▹'; /* Or '•', '▸', etc. */
+        position: absolute;
+        left: 0;
+        color: #89cff0;
+        font-weight: bold;
+     }
+
+     .error-message {
+         color: #f88; /* Reddish color for errors */
+         font-weight: bold;
+         text-align: center;
+     }
+
+    /* --- Tool Examples --- */
+    .tool-examples {
+        margin-top: 2rem;
+        padding: 1rem;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #2a2a2a;
+    }
+
+    .tool-examples h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+
+    .tool-examples p {
+        font-size: 0.9rem;
+        color: #ddd;
+        line-height: 1.5;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadForm = document.getElementById('match-upload-form');
+    const resumeInput = document.getElementById('resume-file');
+    const jdTextarea = document.getElementById('job-description');
+    const analyzeButton = document.getElementById('analyze-match-button');
+    const progressDiv = document.getElementById('analysis-progress');
+    const resultsDiv = document.getElementById('match-results');
+    const matchScoreEl = document.getElementById('match-score');
+    const matchAnalysisEl = document.getElementById('match-analysis');
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
+
+    uploadForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        console.log("Match Form submitted!"); // Debugging
+
+        // Basic validation
+        if (!resumeInput.files || resumeInput.files.length === 0) {
+            progressDiv.textContent = "Please select a resume file.";
+            progressDiv.style.color = '#f88'; // Error color
+            return;
+        }
+        if (!jdTextarea.value.trim()) {
+             progressDiv.textContent = "Please paste the job description.";
+             progressDiv.style.color = '#f88'; // Error color
+             return;
+        }
+
+        const formData = new FormData();
+        formData.append('resume', resumeInput.files[0]);
+        formData.append('job_description', jdTextarea.value);
+        // CSRF token is needed if not using @csrf_exempt, sent via header here
+        // formData.append('csrfmiddlewaretoken', csrfToken); // FormData doesn't work well with headers for CSRF
+
+        // --- UI updates for loading state ---
+        analyzeButton.disabled = true;
+        analyzeButton.textContent = 'Analyzing...';
+        progressDiv.textContent = 'Processing... please wait.';
+        progressDiv.style.color = '#89cff0'; // Reset color
+        resultsDiv.style.display = 'none'; // Hide old results
+        matchAnalysisEl.innerHTML = ''; // Clear previous results
+        matchScoreEl.textContent = '--';
+        // ---
+
+        try {
+            console.log("Starting fetch to analyze match..."); // Debugging
+            const response = await fetch(uploadForm.action, { // Use form's action URL
+                method: 'POST',
+                body: formData,
+                headers: {
+                   'X-CSRFToken': csrfToken // Send CSRF token in header for AJAX
+                }
+            });
+
+            console.log("Response received:", response.status, response.statusText);
+
+            const data = await response.json(); // Try parsing JSON regardless of status for error messages
+            console.log("Parsed JSON:", data);
+
+            if (response.ok) {
+                matchScoreEl.textContent = data.score !== null ? data.score : 'N/A'; // Handle null score
+                if (data.analysis && data.analysis.length > 0) {
+                    data.analysis.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item;
+                        matchAnalysisEl.appendChild(li);
+                    });
+                } else {
+                     const li = document.createElement('li');
+                     li.textContent = data.error || "No specific analysis provided."; // Show error or default message
+                     matchAnalysisEl.appendChild(li);
+                }
+                resultsDiv.style.display = 'block'; // Show results
+                progressDiv.textContent = 'Analysis complete!'; // Success message
+            } else {
+                // Handle server-side errors reported in JSON
+                const errorMessage = data.error || `Server error: ${response.status} ${response.statusText}`;
+                console.error("Server error:", errorMessage);
+                matchAnalysisEl.innerHTML = `<li class="error-message">${errorMessage}</li>`; // Show error in list
+                resultsDiv.style.display = 'block'; // Show results div with error
+                progressDiv.textContent = 'Analysis failed.'; // Failure message
+                 progressDiv.style.color = '#f88'; // Error color
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+            matchAnalysisEl.innerHTML = `<li class="error-message">A network or unexpected error occurred. Please check the console and try again.</li>`;
+            resultsDiv.style.display = 'block'; // Show results div with error
+            progressDiv.textContent = 'Analysis failed.'; // Failure message
+            progressDiv.style.color = '#f88'; // Error color
+        } finally {
+             // --- Reset UI ---
+             analyzeButton.disabled = false;
+             analyzeButton.textContent = 'Analyze Match';
+             // Keep progress message or clear it
+             // setTimeout(() => { progressDiv.textContent = ''; }, 5000); // Optional: clear after a delay
+             // ---
+        }
+    });
+});
+</script>
+{% endblock %}

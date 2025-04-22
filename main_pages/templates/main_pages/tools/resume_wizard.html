@@ -1,0 +1,224 @@
+{% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+    <div class="tool-container">
+        <h1>Resume Wizard</h1>
+
+        <p class="tool-description">
+            Upload your resume (PDF) to get a detailed score and personalized recommendations for improvement.
+        </p>
+
+        <div class="tool-interface">
+            <form id="resume-upload-form" method="post" enctype="multipart/form-data" action="{% url 'main_pages:analyze_resume' %}">
+                {% csrf_token %}
+                <label for="resume-file" class="upload-label">Select Resume (PDF)</label>
+                <input type="file" id="resume-file" name="resume" accept=".pdf" required>
+                <button type="submit" class="analyze-button">Analyze Resume</button>
+                <div class="upload-progress"></div>
+            </form>
+
+            <div id="resume-results" class="results-container">
+                <h2>Analysis Results</h2>
+                <div class="score-display">
+                    <span class="score-label">Resume Score:</span>
+                    <span id="resume-score" class="score">--</span> / 10
+                </div>
+                <div class="recommendations">
+                    <h3>Recommendations</h3>
+                    <ul id="resume-recommendations">
+                        <li>No recommendations yet. Please upload your resume.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-examples">
+            <h2>Example</h2>
+            <p>Here's an example of how the Resume Wizard can help you:</p>
+            </div>
+
+    </div>
+
+    <style>
+        /* Resume Wizard Styles */
+
+        .tool-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: #1e1e1e;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            color: #f0f0f0;
+        }
+
+        .tool-container h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        .tool-description {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .tool-interface {
+            margin-bottom: 2rem;
+        }
+
+        .upload-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #89cff0;
+        }
+
+        #resume-file {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .analyze-button {
+            padding: 0.75rem 1.25rem;
+            background-color: #89cff0;
+            color: #121212;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .analyze-button:hover {
+            background-color: #5dade2;
+        }
+
+        .upload-progress {
+            margin-top: 1rem;
+            /* Add styles for progress bar if needed */
+        }
+
+        .results-container {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+
+        .results-container h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .score-display {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .score-label {
+            font-weight: bold;
+            color: #bbb;
+            margin-right: 0.5rem;
+        }
+
+        .score {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .recommendations h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: #89cff0;
+        }
+
+        .recommendations ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+
+        .recommendations li {
+            font-size: 0.9rem;
+            color: #ddd;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-examples {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+
+        .tool-examples h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .tool-examples p {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const uploadForm = document.getElementById('resume-upload-form');
+    const resultsDiv = document.getElementById('resume-results');
+    const resumeScore = document.getElementById('resume-score');
+    const resumeRecommendations = document.getElementById('resume-recommendations');
+
+    uploadForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        console.log("Form submitted!"); // Debugging
+
+        const formData = new FormData(uploadForm);
+
+        try {
+            console.log("Starting fetch..."); // Debugging
+            const response = await fetch('/tools/resume-wizard/analyze/', {
+                method: 'POST',
+                body: formData,
+            });
+
+            console.log("Response received:", response);
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Parsed JSON:", data);
+                resumeScore.textContent = data.score;
+                resumeRecommendations.innerHTML = '';
+                data.recommendations.forEach(rec => {
+                    const li = document.createElement('li');
+                    li.textContent = rec;
+                    resumeRecommendations.appendChild(li);
+                });
+                resultsDiv.style.display = 'block';
+            } else {
+                console.error("Server error:", response.status, response.statusText);
+                resultsDiv.innerHTML = '<p class="error-message">Error analyzing resume. Please try again.</p>';
+                resultsDiv.style.display = 'block';
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+            resultsDiv.innerHTML = '<p class="error-message">Network error. Please try again.</p>';
+            resultsDiv.style.display = 'block';
+        }
+    });
+});
+    </script>
+   {% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Portfolio{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% block extra_head %}{% endblock %}    
+</head>
+   <body>
+
+    <nav>
+ <ul>
+     <li class="nav-home"><a href="/"><i class="fas fa-home"></i> Home</a></li>
+     <li class="nav-portfolio"><a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+     {% comment %} <li class="nav-tools"><a href="{% url 'tools' %}"><i class="fas fa-wrench"></i> Tools</a></li> {% endcomment %}
+     <li class="nav-tools"><a href=" {% url 'main_pages:tools' %} "><i class="fas fa-wrench"></i> Tools</a></li>
+     <li class="nav-blog"><a href="#blog"><i class="fas fa-newspaper"></i> Blog</a></li>
+     <li class="nav-travel"><a href="{% url 'main_pages:travel' %}"><i class="fas fa-map-marked-alt"></i> Travel</a></li>
+     <li class="nav-research"><a href="#research"><i class="fas fa-flask"></i> Research</a></li>
+     <li class="nav-audio"><a href="#audio"><i class="fas fa-headphones"></i> Audio</a></li>
+     <li class="nav-notes"><a href="#notes"><i class="fas fa-sticky-note"></i> Notes</a></li>
+     <li class="nav-interview"><a href="#interview"><i class="fas fa-question-circle"></i> Interview</a></li>
+     <li class="nav-art"><a href="{% url 'main_pages:artwork' %}"><i class="fas fa-palette"></i> Art</a></li>
+
+     
+ </ul>
+</nav>
+
+    <div class="main-content">
+        {% block content %}
+            {% endblock %}
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank" rel="noopener noreferrer" title="Threads"><i
+                    class="fa-brands fa-threads"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer" title="Instagram"><i
+                    class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:iamvarunkumar23@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://medium.com/@iamvarunkumar23" target="_blank" rel="noopener noreferrer" title="Medium"><i
+                    class="fa-brands fa-medium"></i></a>
+            <a href="#" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/itsvarunkumar/" target="_blank" rel="noopener noreferrer"
+                title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <p>&copy; {% now "Y" %} Varun Kumar. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script> </body>
+   </html>
+   

@@ -1,0 +1,73 @@
+{% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+   <link rel="stylesheet" href="{% static 'css/project.css' %}">
+    <div class="container">
+        <h1>Data Exfiltration (DEX) Automation Report</h1>
+
+        <div class="image-gallery">
+            <img src="{% static 'images/data_exfiltration.jpg' %}" alt="URS Architecture">
+            {% comment %} <img src="{% static 'images/data_exfiltration.jpg %}" alt="Data Exfiltration Illustration"> {% endcomment %}
+        </div>
+
+        <p class="project-overview">
+            Developed an automated system for detecting data exfiltration across multiple channels, focusing on processing large volumes of log data and improving detection accuracy through machine learning and LLM integration.
+        </p>
+
+        <section>
+            <h2 class="section-header">Key Responsibilities and Achievements</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    **Automated Detection System:** Developed an automated system for detecting data exfiltration across <span class="percentage-container"><span class="percentage" data-target="7">0</span></span> channels.
+                </li>
+                <li class="feature-item">
+                    **Large-Scale Data Processing:** Processed gigabytes to terabytes of log data in Snowflake.
+                </li>
+                <li class="feature-item">
+                    **Improved Detection Accuracy:** Improved initial detection accuracy by <span class="percentage-container"><span class="percentage" data-target="45.7">0</span>%</span>.
+                </li>
+                <li class="feature-item">
+                    **Behavioral Baselining:** Enhanced detection capabilities by incorporating machine learning-driven behavioral baselining, deployed via Snowpark and Azure Functions.
+                </li>
+                <li class="feature-item">
+                    **Sequence Analysis:** Utilized LSTM-based sequence analysis to improve overall accuracy by <span class="percentage-container"><span class="percentage" data-target="20.7">0</span>%</span> and complex threat detection by <span class="percentage-container"><span class="percentage" data-target="18.3">0</span>%</span>.
+                </li>
+                <li class="feature-item">
+                    **LLM for Intent Analysis:** Integrated an LLM, utilizing Retrieval Augmented Generation (RAG) on Azure, for nuanced intent analysis of alerts, clarifying <span class="percentage-container"><span class="percentage" data-target="32">0</span>%</span> of ambiguous alerts and significantly reducing investigation time.
+                </li>
+                <li class="feature-item">
+                    **Deployment and Orchestration:** Deployed containerized ML models using Docker and Azure Functions. Orchestrated data processing and validation using Dataiku and Snowpark.
+                </li>
+                <li class="feature-item">
+                    **Data Warehousing:** Used Snowflake for data warehousing.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-header">Technologies Used</h2>
+            <div class="tech-list">
+                <span class="tech-item">Snowflake</span>
+                <span class="tech-item">Snowpark</span>
+                <span class="tech-item">Azure Functions</span>
+                <span class="tech-item">Docker</span>
+                <span class="tech-item">Dataiku</span>
+                <span class="tech-item">LSTM</span>
+                <span class="tech-item">Azure</span>
+                <span class="tech-item">LLM</span>
+                <span class="tech-item">RAG</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-header">Project Details</h2>
+            <p>
+                The Data Exfiltration (DEX) Automation Report project focused on developing an automated system for detecting data exfiltration across multiple channels.
+                
+            </p>
+        </section>
+
+        </div>
+    <script src="{% static 'js/project.js' %}"></script>
+   {% endblock %}

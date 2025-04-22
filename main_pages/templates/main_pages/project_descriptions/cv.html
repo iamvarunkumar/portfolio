@@ -1,0 +1,72 @@
+{% extends 'main_pages/base.html' %}
+   {% load static %}
+
+   {% block content %}
+   <link rel="stylesheet" href="{% static 'css/project.css' %}">
+    <div class="container">
+        <h1>CV: Real-Time Multi-Object Tracking & Behavior Analysis</h1>
+
+        <div class="image-gallery">
+            <img src="{% static 'images/object_detection.jpg' %}" alt="Real-Time Object Tracking Illustration">
+        </div>
+
+        <p class="project-overview">
+            Developed a real-time computer vision system for multi-object tracking and behavior analysis to improve tracking accuracy and identify anomalous events in video streams.
+        </p>
+
+        <section>
+            <h2 class="section-header">Key Responsibilities and Achievements</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    **Multi-Object Tracking:** Developed a real-time vision system integrating YOLOv8 and DeepSORT, increasing multi-object tracking accuracy (MOTA) by <span class="percentage-container"><span class="percentage" data-target="25">0</span>%</span> compared to standard trackers on benchmark datasets (MOT17).
+                </li>
+                <li class="feature-item">
+                    **Behavior Analysis:** Implemented behavior analysis components using trajectory clustering, identifying anomalous events with <span class="percentage-container"><span class="percentage" data-target="90">0</span>%</span> precision in simulated traffic video, reducing false alarms by <span class="percentage-container"><span class="percentage" data-target="42">0</span>%</span>.
+                </li>
+                <li class="feature-item">
+                    **Performance Optimization:** Optimized the end-to-end vision pipeline using TensorRT, achieving a <span class="percentage-container"><span class="percentage" data-target="37">0</span>%</span> reduction in inference latency and enabling consistent processing at <span class="percentage-container"><span class="percentage" data-target="30">0</span>+</span> FPS on target hardware.
+                </li>
+                <li class="feature-item">
+                    **Deployment and Scalability:** Containerized (Docker) and deployed the system on AWS (using EC2/SageMaker), demonstrating scalability to handle <span class="percentage-container"><span class="percentage" data-target="10">0</span>+</span> concurrent video streams and reducing deployment time by 60% through CI/CD pipelines.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-header">Technologies Used</h2>
+            <div class="tech-list">
+                <span class="tech-item">YOLOv8</span>
+                <span class="tech-item">DeepSORT</span>
+                <span class="tech-item">TensorRT</span>
+                <span class="tech-item">Docker</span>
+                <span class="tech-item">AWS (EC2, SageMaker)</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-header">Project Details</h2>
+            <p>
+                The CV: Real-Time Multi-Object Tracking & Behavior Analysis project focused on developing a computer vision system to analyze video streams in real-time. This involved:
+            </p>
+            <ul>
+                <li>
+                    **Multi-Object Tracking:** The core of the system was a real-time multi-object tracking capability. This was achieved by integrating the YOLOv8 object detection model with the DeepSORT tracking algorithm. YOLOv8 accurately identifies objects in each frame of the video, while DeepSORT maintains the identity of each object across frames, even when they temporarily disappear or overlap. This integration resulted in a significant improvement in tracking accuracy compared to standard tracking methods.
+                </li>
+                <li>
+                    **Behavior Analysis:** Beyond simply tracking objects, the system also analyzed their behavior. This was done using trajectory clustering techniques to identify patterns in the movement of objects. By analyzing these patterns, the system could detect anomalous events, such as unusual traffic flow or suspicious movements.
+                </li>
+                <li>
+                    **Performance Optimization:** To ensure the system could operate in real-time, significant effort was invested in optimizing its performance. TensorRT was used to accelerate the inference process, achieving a substantial reduction in latency and enabling the system to process video at 30+ frames per second on the target hardware.
+                </li>
+                <li>
+                    **Deployment and Scalability:** The entire system was containerized using Docker, allowing for easy deployment and portability. It was then deployed on the AWS cloud platform, leveraging services like EC2 (for compute) and SageMaker (for machine learning). The deployment was designed to be scalable, enabling the system to handle multiple concurrent video streams efficiently. CI/CD pipelines were implemented to automate the deployment process, reducing deployment time and ensuring consistent updates.
+                </li>
+            </ul>
+        </section>
+
+        </div>
+
+
+
+<script src="{% static 'js/project.js' %}"></script>
+   {% endblock %}

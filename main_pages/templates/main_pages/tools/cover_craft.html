@@ -1,0 +1,502 @@
+{% extends 'main_pages/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="tool-container cover-craft-container"> <h1>Cover Letter Crafter</h1>
+
+    <p class="tool-description">
+        Enter your details, paste your resume highlights and the job description, and let AI craft a draft cover letter for you.
+    </p>
+
+    <div class="tool-interface">
+        <form id="cover-letter-form" method="post" action="{% url 'main_pages:generate_cover_letter' %}">
+            {% csrf_token %}
+            <input type="hidden" id="resume_input_type" name="resume_input_type" value="text">  
+            <div class="form-grid"> <div>
+                    <label for="user_name" class="upload-label">Your Full Name *</label>
+                    <input type="text" id="user_name" name="user_name" required class="form-input">
+                </div>
+                <div>
+                    <label for="company_name" class="upload-label">Company Name *</label>
+                    <input type="text" id="company_name" name="company_name" required class="form-input">
+                </div>
+                <div>
+                    <label for="job_title" class="upload-label">Job Title You're Applying For *</label>
+                    <input type="text" id="job_title" name="job_title" required class="form-input">
+                </div>
+                 <div>
+                    <label for="hiring_manager_name" class="upload-label">Hiring Manager's Name (Optional)</label>
+                    <input type="text" id="hiring_manager_name" name="hiring_manager_name" placeholder="e.g., Ms. Jane Doe" class="form-input">
+                </div>
+            </div> 
+            <div class="resume-input-choice">
+     <label class="upload-label">Provide Resume Info Via: *</label>
+     <div class="choice-button-group">
+         <button type="button" id="choice-btn-paste" class="choice-button active">Paste Text</button>
+         <button type="button" id="choice-btn-upload" class="choice-button">Upload PDF</button>
+     </div>
+</div>
+            <div id="resume-paste-container" class="resume-input-container">
+     <label for="resume_text" class="upload-label">Paste Resume Highlights / Key Experience *</label>
+     <textarea id="resume_text" name="resume_text" rows="10" placeholder="..." required class="form-textarea"></textarea>
+</div>
+<div id="resume-upload-container" class="resume-input-container" style="display: none;">
+     <label for="resume_file" class="upload-label">Upload Resume PDF *</label>
+     <input type="file" id="resume_file" name="resume_file" accept=".pdf" class="form-file-input">
+</div>
+            <label for="job_description" class="upload-label">Job Description *</label>
+            <textarea id="job_description" name="job_description" rows="10" placeholder="Paste the full job description here..." required class="form-textarea"></textarea>
+
+            <label for="skills_to_highlight" class="upload-label">Specific Skills/Experiences to Emphasize (Optional)</label>
+            <textarea id="skills_to_highlight" name="skills_to_highlight" rows="4" placeholder="e.g., Focus on my leadership experience, mention the XYZ project specifically..." class="form-textarea"></textarea>
+
+            <button type="submit" id="generate-button" class="analyze-button">Generate Cover Letter</button>
+            <div id="generation-progress" class="upload-progress"></div> </form>
+
+        <div id="cover-letter-results" class="results-container" style="display: none;"> <h2>Generated Cover Letter Draft</h2>
+             <label for="generated-cover-letter" class="upload-label">Copy the text below:</label>
+            <textarea id="generated-cover-letter" class="results-textarea" rows="20" readonly placeholder="Your cover letter will appear here..."></textarea>
+             <button id="copy-button" class="copy-button" type="button">Copy to Clipboard</button>
+             <span id="copy-status" class="copy-status"></span>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /* Inherit base styles, add specific styles */
+    .cover-craft-container {
+        max-width: 800px;
+        padding:auto;
+        margin:auto; /* Wider for more text areas */
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+        gap: 1rem; /* Space between grid items */
+        margin-bottom: 1rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #333;
+        color: #fff;
+        margin-bottom: 1rem; /* Consistent spacing */
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 0.9rem;
+    }
+
+    .form-textarea {
+        resize: vertical;
+    }
+
+    .upload-label { /* Ensure labels are styled consistently */
+        display: block;
+        margin-bottom: 0.5rem;
+        margin-top: 1rem;
+        font-weight: bold;
+        color: #89cff0;
+    }
+     .upload-label:first-child, .form-grid + .upload-label {
+        margin-top: 0; /* Remove top margin for first label */
+    }
+
+
+    .analyze-button { /* Reusing class name */
+        display: block;
+        width: 100%;
+        padding: 0.85rem 1.25rem;
+        background-color: #89cff0;
+        color: #121212;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+        margin-top: 1.5rem; /* More space before button */
+    }
+
+    .analyze-button:hover {
+        background-color: #5dade2;
+    }
+
+     .analyze-button:disabled {
+        background-color: #555;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    .upload-progress {
+        margin-top: 1rem;
+        text-align: center;
+        color: #89cff0;
+        min-height: 1.2em;
+    }
+
+    .results-container {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #2a2a2a;
+    }
+
+     .results-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem; /* More space below heading */
+        color: #fff;
+        text-align: center;
+    }
+
+    .results-textarea {
+        width: 100%;
+        background-color: #1e1e1e; /* Darker background for contrast */
+        color: #f0f0f0;
+        border: 1px solid #555;
+        border-radius: 4px;
+        padding: 1rem;
+        font-family: 'Courier New', Courier, monospace; /* Monospace for letter */
+        font-size: 0.9rem;
+        line-height: 1.5;
+        box-sizing: border-box;
+        margin-top: 0.5rem; /* Space below label */
+    }
+
+    .copy-button {
+        padding: 0.5rem 1rem;
+        background-color: #5dade2;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s ease-in-out;
+        margin-top: 1rem;
+        display: inline-block; /* Align next to status */
+    }
+
+    .copy-button:hover {
+        background-color: #89cff0;
+        color: #121212;
+    }
+
+    .copy-status {
+        margin-left: 1rem;
+        font-size: 0.9em;
+        color: #5dade2;
+    }
+
+    .error-message {
+         color: #f88;
+         font-weight: bold;
+         text-align: center;
+         margin-top: 1rem;
+     }
+     .resume-input-choice {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 1rem;
+}
+/* --- Styles for Input Choice Buttons --- */
+.resume-input-choice {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 1rem;
+}
+.resume-input-choice .upload-label {
+     margin-top: 0; /* Ensure label has no top margin */
+     margin-bottom: 0.75rem;
+}
+
+.choice-button-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.choice-button {
+    flex-grow: 1; /* Make buttons share space */
+    padding: 0.6rem 1rem;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.choice-button.active {
+    background-color: #89cff0;
+    color: #121212;
+    border-color: #89cff0;
+    font-weight: bold;
+}
+.choice-button:not(.active):hover {
+     background-color: #444;
+     border-color: #666;
+}
+/* --- End Input Choice Styles --- */
+
+/* --- Initially hidden input container --- */
+.resume-input-container {
+    /* display: none; */ /* JS will handle initial state */
+    margin-bottom: 1rem; /* Ensure space below container */
+}
+/* --- */
+
+/* Added file input class to general input styles */
+.form-input,
+.form-textarea,
+.form-file-input { /* Added file input class */
+   /* ... existing styles ... */
+}
+.form-file-input {
+    padding: 0.5rem 0.75rem; /* Adjust padding for file input */
+}
+
+/* Adjusted margin rules for labels */
+ .form-grid > div:first-child .upload-label,
+ .form-grid + .resume-input-choice, /* Adjust margin rule */
+ .resume-input-container + .upload-label { /* Adjust margin rule */
+    margin-top: 0;
+}
+
+</style>
+
+<script>
+// Wait for the DOM to be fully loaded before running the script
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Get References to Form & Control Elements ---
+    const coverLetterForm = document.getElementById('cover-letter-form');
+    const generateButton = document.getElementById('generate-button');
+    const progressDiv = document.getElementById('generation-progress');
+    const resultsDiv = document.getElementById('cover-letter-results');
+    const resultsTextarea = document.getElementById('generated-cover-letter');
+    const copyButton = document.getElementById('copy-button');
+    const copyStatus = document.getElementById('copy-status');
+    // Assumes the CSRF token input is present in your form
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    // --- Get References to Input Fields ---
+    const userNameInput = document.getElementById('user_name');
+    const companyNameInput = document.getElementById('company_name');
+    const jobTitleInput = document.getElementById('job_title');
+    const hiringManagerInput = document.getElementById('hiring_manager_name');
+    const jobDescriptionInput = document.getElementById('job_description');
+    const skillsToHighlightInput = document.getElementById('skills_to_highlight');
+
+    // --- Get References to Resume Input Elements ---
+    const inputTypeHidden = document.getElementById('resume_input_type'); // Hidden input tracks 'text' or 'file'
+    const choiceBtnPaste = document.getElementById('choice-btn-paste');
+    const choiceBtnUpload = document.getElementById('choice-btn-upload');
+    const pasteContainer = document.getElementById('resume-paste-container');
+    const uploadContainer = document.getElementById('resume-upload-container');
+    const resumeTextInput = document.getElementById('resume_text');
+    const resumeFileInput = document.getElementById('resume_file');
+    // ---
+
+    // --- Function to Switch Between Resume Input Modes (Paste vs. Upload) ---
+    function switchResumeInput(mode) {
+        console.log(`Attempting to switch to mode: ${mode}`); // Debug log
+        try {
+            if (mode === 'text') {
+                // Show paste section, hide upload section
+                pasteContainer.style.display = 'block';
+                uploadContainer.style.display = 'none';
+                // Update button active states
+                choiceBtnPaste.classList.add('active');
+                choiceBtnUpload.classList.remove('active');
+                // Toggle required attributes for validation
+                resumeTextInput.required = true;
+                resumeFileInput.required = false;
+                // Clear any selected file from the file input
+                resumeFileInput.value = '';
+                // Update the hidden input tracking the mode
+                inputTypeHidden.value = 'text';
+                console.log("Switched to Paste Text mode successfully."); // Debug log
+            } else if (mode === 'file') {
+                // Show upload section, hide paste section
+                pasteContainer.style.display = 'none';
+                uploadContainer.style.display = 'block';
+                 // Update button active states
+                choiceBtnPaste.classList.remove('active');
+                choiceBtnUpload.classList.add('active');
+                 // Toggle required attributes for validation
+                resumeTextInput.required = false;
+                resumeFileInput.required = true;
+                // Optional: Clear textarea content when switching to upload
+                // resumeTextInput.value = '';
+                 // Update the hidden input tracking the mode
+                inputTypeHidden.value = 'file';
+                 console.log("Switched to Upload PDF mode successfully."); // Debug log
+            } else {
+                 // Log a warning if an unexpected mode is passed
+                 console.warn(`Unknown mode requested: ${mode}`);
+            }
+        } catch (error) {
+             // Log any errors that occur during the switching process
+             console.error(`Error during switchResumeInput to mode ${mode}:`, error);
+        }
+    }
+
+    // --- Attach Event Listeners to the Choice Buttons ---
+    choiceBtnPaste.addEventListener('click', () => {
+        console.log("Paste Text button clicked."); // Debug log
+        switchResumeInput('text');
+    });
+    choiceBtnUpload.addEventListener('click', () => {
+        console.log("Upload PDF button clicked."); // Debug log
+        switchResumeInput('file');
+    });
+
+    // --- Set the Initial State on Page Load ---
+    // Ensures the UI matches the default value ('text') set in the hidden input
+    switchResumeInput('text');
+
+    // --- Handle Form Submission ---
+    coverLetterForm.addEventListener('submit', async (event) => {
+        // Prevent the default form submission (which causes a page reload)
+        event.preventDefault();
+        console.log("Cover Letter Form submitted!");
+        // Get the currently active resume input type ('text' or 'file')
+        const currentInputType = inputTypeHidden.value;
+        console.log(`Submitting form with resume_input_type: ${currentInputType}`); // Debug log
+
+        // --- Client-Side Validation ---
+        let isValid = true;
+        let errorMsg = '';
+        // Validate basic information fields
+        if (!userNameInput.value.trim()) { isValid = false; errorMsg = 'Your Name is required.'; }
+        else if (!companyNameInput.value.trim()) { isValid = false; errorMsg = 'Company Name is required.'; }
+        else if (!jobTitleInput.value.trim()) { isValid = false; errorMsg = 'Job Title is required.'; }
+        else if (!jobDescriptionInput.value.trim()) { isValid = false; errorMsg = 'Job Description is required.'; }
+        // Validate resume input based on the active mode
+        else if (currentInputType === 'text' && !resumeTextInput.value.trim()) {
+             isValid = false; errorMsg = 'Pasted Resume Highlights are required.';
+             console.log("Validation failed: Missing pasted resume text."); // Debug log
+        } else if (currentInputType === 'file' && (!resumeFileInput.files || resumeFileInput.files.length === 0)) {
+             isValid = false; errorMsg = 'Please select a Resume PDF file to upload.';
+             console.log("Validation failed: Missing resume file upload."); // Debug log
+        }
+
+        // If validation fails, display the error message and stop processing
+        if (!isValid) {
+            progressDiv.textContent = errorMsg;
+            progressDiv.style.color = '#f88'; // Use error color
+            return;
+        }
+        // --- End Validation ---
+
+        // --- Prepare Data for Sending (Using FormData) ---
+        const formData = new FormData();
+        // Append common fields
+        formData.append('user_name', userNameInput.value.trim());
+        formData.append('company_name', companyNameInput.value.trim());
+        formData.append('job_title', jobTitleInput.value.trim());
+        formData.append('hiring_manager_name', hiringManagerInput.value.trim()); // Optional
+        formData.append('job_description', jobDescriptionInput.value.trim());
+        formData.append('skills_to_highlight', skillsToHighlightInput.value.trim()); // Optional
+        // Append the indicator for how resume info was provided
+        formData.append('resume_input_type', currentInputType);
+
+        // Append resume data based on the active type
+        if (currentInputType === 'text') {
+            formData.append('resume_text', resumeTextInput.value.trim());
+            console.log("Appending resume as TEXT to FormData");
+        } else { // type === 'file'
+            formData.append('resume_file', resumeFileInput.files[0]);
+             console.log("Appending resume as FILE to FormData:", resumeFileInput.files[0].name);
+        }
+        // --- End Prepare Data ---
+
+        // --- Update UI to Indicate Loading State ---
+        generateButton.disabled = true; // Disable button during processing
+        generateButton.textContent = 'Generating...'; // Change button text
+        progressDiv.textContent = 'Crafting your cover letter... please wait.'; // Show progress message
+        progressDiv.style.color = '#89cff0'; // Use normal progress color
+        resultsDiv.style.display = 'none'; // Hide previous results
+        resultsTextarea.value = ''; // Clear previous results textarea
+        copyStatus.textContent = ''; // Clear copy status message
+        // ---
+
+        // --- Send Data to Backend using Fetch API ---
+        try {
+            console.log("Starting fetch to generate cover letter..."); // Debug log
+            // Make the asynchronous POST request
+            const response = await fetch(coverLetterForm.action, { // URL from form's action attribute
+                method: 'POST',
+                body: formData, // FormData handles content type for file uploads
+                headers: {
+                   // Required for Django's CSRF protection with AJAX
+                'X-CSRFToken': csrfToken
+                }
+            });
+
+            console.log("Response received:", response.status, response.statusText); // Debug log
+            // Parse the JSON response from the server
+            const data = await response.json();
+            console.log("Parsed JSON:", data); // Debug log
+
+            // Check if the request was successful and data contains the letter
+            if (response.ok && data.cover_letter) {
+                // Display the generated cover letter
+                resultsTextarea.value = data.cover_letter;
+                resultsDiv.style.display = 'block'; // Show the results container
+                progressDiv.textContent = 'Generation complete!'; // Update progress message
+            } else {
+                // Handle errors reported by the server or bad responses
+                const errorMessage = data.error || `Server error: ${response.status} ${response.statusText}`;
+                console.error("Generation error:", errorMessage); // Log the error
+                progressDiv.textContent = `Error: ${errorMessage}`; // Display error message
+                progressDiv.style.color = '#f88'; // Use error color
+                resultsDiv.style.display = 'none'; // Keep results hidden
+            }
+        } catch (error) {
+            // Handle network errors or issues with the fetch request itself
+            console.error("Fetch error:", error); // Log the fetch error
+            progressDiv.textContent = 'A network error occurred. Please try again.';
+            progressDiv.style.color = '#f88'; // Use error color
+            resultsDiv.style.display = 'none';
+        } finally {
+             // --- Reset UI after completion or error ---
+             generateButton.disabled = false; // Re-enable the button
+             generateButton.textContent = 'Generate Cover Letter'; // Reset button text
+             // ---
+        }
+    });
+
+    // --- Copy to Clipboard Functionality ---
+    copyButton.addEventListener('click', () => {
+        // Don't try to copy if the textarea is empty
+        if (!resultsTextarea.value) return;
+
+        // Use the modern Navigator Clipboard API
+        navigator.clipboard.writeText(resultsTextarea.value)
+            .then(() => {
+                // Success: Update status message
+                copyStatus.textContent = 'Copied!';
+                // Clear the message after a short delay
+                setTimeout(() => { copyStatus.textContent = ''; }, 3000);
+            })
+            .catch(err => {
+                 // Error: Log error and update status message
+                console.error('Failed to copy text: ', err);
+                copyStatus.textContent = 'Copy failed!';
+                 // Clear the message after a short delay
+                setTimeout(() => { copyStatus.textContent = ''; }, 3000);
+            });
+    });
+    // ---
+
+}); // End DOMContentLoaded
+
+</script>
+{% endblock %}

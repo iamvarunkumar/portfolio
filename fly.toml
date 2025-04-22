@@ -3,7 +3,7 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 
 # Replace YOUR_APP_NAME with the unique name you chose for your app on Fly.io
-app = "my_portfolio"
+app = "protfolio-floral-forest-9664"
 
 # Replace YOUR_PRIMARY_REGION with the region you selected during launch (e.g., maa, bom, sin, fra, iad)
 primary_region = "bom"
@@ -17,6 +17,8 @@ primary_region = "bom"
 # Essential for running database migrations.
 [deploy]
   release_command = "python manage.py migrate --noinput"
+
+  release_command = "echo '--- Running Debug ---' && pwd && echo '--- Listing files ---' && ls -la && echo '--- Checking ENV VAR ---' && env | grep DJANGO && echo '--- Python sees VAR as: ---' && python -c 'import os; print(os.environ.get(\"DJANGO_SETTINGS_MODULE\"))' && echo '--- Attempting Migrate ---' && python manage.py migrate --noinput"
 
 # Defines non-secret environment variables available to your application.
 [env]

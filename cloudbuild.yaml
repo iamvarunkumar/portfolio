@@ -1,0 +1,56 @@
+# cloudbuild.yaml
+
+steps:
+  # Step 1: Build the Docker image
+  # Uses the standard Docker builder provided by Google Cloud Build.
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        # Tag with the specific commit SHA for traceability
+        '-t',
+        '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:$COMMIT_SHA',
+        # Also tag with 'latest' for easy reference/deployment
+        '-t',
+        '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:latest',
+        # Build context is the current directory (where cloudbuild.yaml is)
+        '.',
+        # Explicitly specify the Dockerfile name (good practice)
+        '-f',
+        'Dockerfile'
+      ]
+    id: 'Build Docker Image'
+
+  # Step 2: Push the image tagged with COMMIT_SHA to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:$COMMIT_SHA']
+    id: 'Push Image (Commit SHA)'
+
+  # Step 3: Push the image tagged with 'latest' to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:latest']
+    id: 'Push Image (latest)'
+
+# List the images that were built and pushed.
+# This allows subsequent steps (like deploying to Cloud Run) to reference them.
+images:
+  - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:$COMMIT_SHA'
+  - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:latest'
+
+# Define user-substitutions.
+# Cloud Build automatically provides $PROJECT_ID and $COMMIT_SHA.
+# You MUST verify these default values match your setup!
+substitutions:
+  # Change this to the region where your Artifact Registry repository exists
+  _REGION: 'us-central1'
+  # Change this to the name of your Artifact Registry repository
+  _REPOSITORY: 'portfolio-docker-repo' # Or 'my-portfolio-app' if you ended up using that one
+  # Change this to the desired image name within the repository
+  _IMAGE_NAME: 'portfolio'
+
+# Optional: Set a timeout for the build (e.g., 20 minutes)
+# timeout: '1200s'
+
+# Optional: Specify a larger machine type if your build needs more resources
+# options:
+#  machineType: 'N1_HIGHCPU_8'

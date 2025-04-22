@@ -62,7 +62,7 @@ SECRET_KEY = 'django-insecure-n3p1-jt(iys9l!6_5*zd1c_4lkq)*k3z_up@ibd6@mo$&$7c#@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*","my-portfolio-857911444995.us-central1.run.app"]
+ALLOWED_HOSTS = ["*","my-portfolio-764278504344.asia-south2.run.app"]
 
 
 # Application definition

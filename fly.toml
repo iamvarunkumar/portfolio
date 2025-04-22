@@ -16,7 +16,7 @@ primary_region = "bom"
 # Defines the command to run *before* a new deployment is released.
 # Essential for running database migrations.
 [deploy]
-  release_command = "python manage.py migrate --noinput"
+ 
 
   release_command = "echo '--- Running Debug ---' && pwd && echo '--- Listing files ---' && ls -la && echo '--- Checking ENV VAR ---' && env | grep DJANGO && echo '--- Python sees VAR as: ---' && python -c 'import os; print(os.environ.get(\"DJANGO_SETTINGS_MODULE\"))' && echo '--- Attempting Migrate ---' && python manage.py migrate --noinput"
 
